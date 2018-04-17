@@ -1,0 +1,24 @@
+{
+  "name": "ex2",
+  "version": "1.0.0",
+  "description": "ex02",
+  "main": "apps.js",
+  "dependencies": {
+    "ejs": "^2.5.8",
+    "express": "^4.16.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nilonovaes/node.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nilonovaes/node/issues"
+  },
+  "homepage": "https://github.com/nilonovaes/node#readme"
+}

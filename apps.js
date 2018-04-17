@@ -1,21 +1,18 @@
 var http = require('http');
+var express = require('express');
+var app = express();
 
-var server = http.createServer(function (req, res) {
+app.set('view engine', 'ejs');
 
-    if (req.url === "/editar") {
-        res.end('<html><body><h1>ALOOOO 2</h1></body></html>');
-    } else {
-        res.end('<html><body><h1>ALOOOO</h1></body></html>');
-    }
-
-
-
+app.get('/', function (req, res) {
+    res.render("index");
 });
 
-server.listen(3000);
+app.get('/editar', function (req, res) {
+    res.render("editar");
+});
 
 
-console.log('Servidor no ar');
-
-// aaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-// ssssssssssssssss
+app.listen(3000, function () {
+    console.log("Server rurning")
+});
