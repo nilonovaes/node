@@ -15,49 +15,53 @@
 
 <body class="container">
 
-    <table class="table table-hover table-bordered">
-        <thead>
-            <tr>
-                <th>Nome fantasia</th>
-                <th>Data Fabricação</th>
-                <th>Cor</th>
-                <th>Altura</th>
-                <th>Preço</th>
-                <th>Peso</th>
-            </tr>
-        </thead>
-        <% for (var i=0; i<resultsHTML.length; i++){ %>
-            <tr>
-                <td>
-                    <%= resultsHTML[i].NOME_FANTASIA%>
-                </td>
-                <td>
-                    <%= resultsHTML[i].DATA_FABRICACAO%>
-                </td>
-                <td>
-                    <%= resultsHTML[i].COR%>
-                </td>
-                <td>
-                    <%= resultsHTML[i].ALTURA%>
-                </td>
-                <td>
-                    <%= resultsHTML[i].PRECO%>
-                </td>
-                <td>
-                    <%= resultsHTML[i].PESO%>
-                </td>
+    <form action='/catalogo' method="post">
+        <table class="table table-hover table-bordered">
+            <thead>
+                <tr>
+                    <th>Nome fantasia</th>
+                    <th>Data Fabricação</th>
+                    <th>Cor</th>
+                    <th>Altura</th>
+                    <th>Preço</th>
+                    <th>Peso</th>
+                    <th>Remover</th>
+                </tr>
+            </thead>
+            <% for (var i=0; i<resultsHTML.length; i++){ %>
+                <tr>
+                    <td>
+                        <%= resultsHTML[i].NOME_FANTASIA%>
+                    </td>
+                    <td>
+                        <%= resultsHTML[i].DATA_FABRICACAO%>
+                    </td>
+                    <td>
+                        <%= resultsHTML[i].COR%>
+                    </td>
+                    <td>
+                        <%= resultsHTML[i].ALTURA%>
+                    </td>
+                    <td>
+                        <%= resultsHTML[i].PRECO%>
+                    </td>
+                    <td>
+                        <%= resultsHTML[i].PESO%>
+                    </td>
+                    <td>
+                        <button class="btn btn-danger centered" type="submit">remove</button>
+                    </td>
+                </tr>
+                <%}%>
 
-            </tr>
-            <%}%>
 
+                    <tbody>
+                    </tbody>
 
-                <tbody>
-                </tbody>
-
-                <tfoot>
-                </tfoot>
-    </table>
-
+                    <tfoot>
+                    </tfoot>
+        </table>
+    </form>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
