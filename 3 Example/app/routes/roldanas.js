@@ -7,12 +7,20 @@ module.exports = function (app) {
 
         roldanasDAO.listaRoldanas(function (error, results) { //Retorno do callback
             if (error) throw error;
-            res.render('roldanas/catalogo', {
-                resultsHTML: results
-            });
+
+            res.format({
+                html: function () {
+                    res.render('roldanas/catalogo', {
+                        resultsHTML: results
+                    });
+                },
+                json: function () {
+                    res.json(results);
+                }
+            })
         });
 
-        connection.end();
+        // connection.end();
     });
 
     app.get('/cadastro', function (req, res) {
@@ -26,36 +34,43 @@ module.exports = function (app) {
         var connection = app.infra.connectionFactory;;
         var roldanasDAO = new app.infra.roldanasDAO(connection);
 
-        // req.checkBody("NOME_FANTASIA", "Nome é obrigatório.").isEmpty();
-        // req.checkBody("NOME_FANTASIA", "Data no formato inválido.").matches("**/**/****")
+        // req.assert("NOME_FANTASIA", "Nome é obrigatório.").notEmpty();
+        // var errors = req.validationErrors();
+        // console.log(errors);
+
+        // req.assert("DATA_FABRICACAO", "Data no formato inválido.").matches("**/**/****")
+        // var errors = req.validationErrors();
+        // console.log(errors);
         // req.checkBody("COR", "Cor deve ser branca.").optional().matches("BRANCA")
         // req.checkBody("ALTURA", "Cor deve ser branca.").matches("*.**")
         // req.checkBody("PRECO", "Cor deve ser branca.").matches("***.**")
         // req.checkBody("PESO", "Cor deve ser branca.").matches("**.**")
 
-        roldanasDAO.insertRoldana(roldana, function (error, result) {
-            if (error) throw error;
-            res.redirect('/catalogo');
-        });
+        if (!errors) {
+
+            roldanasDAO.insertRoldana(roldana, function (error, result) {
+                if (error) throw error;
+                res.redirect('/catalogo');
+            });
+        }
         // connection.end();
     });
 
-    app.post('/catalogo', function (req, res) {
+    // app.post('/catalogo', function (req, res) {
 
-        // res.send('Got a DELETE request at /user')
+    //     // res.send('Got a DELETE request at /user')
 
-        var roldana = req.body;
+    //     var roldana = req.body;
 
-        var connection = app.infra.connectionFactory;;
-        var roldanasDAO = new app.infra.roldanasDAO(connection);
+    //     var connection = app.infra.connectionFactory;;
+    //     var roldanasDAO = new app.infra.roldanasDAO(connection);
 
-        roldanasDAO.deleteRoldana(roldana.NOME_FANTASIA, function (error, result) {
-            if (error) throw error;
-            console.log('deleted');
-            res.send('Got a DELETE request at /user')
-            // res.redirect('/catalogo');
-        });
-
-    });
+    //     roldanasDAO.deleteRoldana(roldana.NOME_FANTASIA, function (error, result) {
+    //         if (error) throw error;
+    //         console.log('deleted');
+    //         res.send('Got a DELETE request at /user')
+    //         // res.redirect('/catalogo');
+    //     });
+    // });
 
 }
